@@ -1,7 +1,7 @@
 /**
  * SYST 17796 Project Base code.
  * Students can modify and extend to implement their game.
- * Add your name as an author and the date!(Gulsher)
+ * Add your name as an author and the date!
  */
 package ca.sheridancollege.project;
 
@@ -13,6 +13,8 @@ import java.util.ArrayList;
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
+ * @author Gulsher Feb 2023
+ * @author Chao Yen Chou Feb 2023
  */
 public abstract class Game {
 
