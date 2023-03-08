@@ -1,0 +1,10 @@
+1.	Game requires at least two players and standard 52 cards poker.
+2.	Cards are ranked from highest to lowest as A K Q J 10 9 8 7 6 5 4 3 2.
+3.	The cards are shuffled and distributed to the participants as evenly as possible.
+4.	The player with the Ace of Spades starts the game by putting in a pile in the middle.
+5.	Players go clockwise placing a card of same suite if possible. In the first round, everyone plays one card, even if a player has no spades and therefore throws a card of another suit, and this first round is always thrown on the waste pile.
+6.	In the following rounds, if a player does not have a card matching the play suite, they may throw in any card at their turn. The round instantly ends and the player with the highest card of the original suite must then pick up the pile.
+7.	If a round goes until all players have placed a card in the middle (all cards in same suit), then the cards in the middle are thrown to waste pile and the player that had thrown the highest valued card will now start the next round.
+8.	The player who gets rid of all their cards,stop playing and wins, others carry on.
+9.	The last player to hold any number of cards in the hand loses.
+10.	If a player has no more cards in hand but his/her card is the highest in the last round in which everyone is able to follow suit. That player must draw a card at random from the (shuffled) face down waste pile, leading to the next round and the r.
