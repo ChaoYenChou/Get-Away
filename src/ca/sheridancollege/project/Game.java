@@ -8,15 +8,15 @@ package ca.sheridancollege.project;
 import java.util.ArrayList;
 
 /**
- * The class that models your game. You should create a more specific child of this class and instantiate the methods
- * given.
+ * The class that models your game. You should create a more specific child of
+ * this class and instantiate the methods given.
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Gulsher Feb 2023
  * @author Jivesh Malhotra Feb 13th, 2023
  * @author Chao Yen Chou Feb 2023
- * @author Tanish Sindhu 
+ * @author Tanish Sindhu
  */
 public abstract class Game {
 
@@ -50,12 +50,14 @@ public abstract class Game {
     }
 
     /**
-     * Play the game. This might be one method or many method calls depending on your game.
+     * Play the game. This might be one method or many method calls depending on
+     * your game.
      */
     public abstract void play();
 
     /**
-     * When the game is over, use this method to declare and display a winning player.
+     * When the game is over, use this method to declare and display a winning
+     * player.
      */
     public abstract void declareWinner();
 
