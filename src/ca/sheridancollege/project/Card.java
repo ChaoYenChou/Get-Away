@@ -10,6 +10,7 @@ package ca.sheridancollege.project;
  * game. Students wishing to add to the code should remember to add themselves as a modifier.
  *
  * @author dancye
+ * @auther Chao Yen Chou Feb 2023
  */
 public abstract class Card {
     //default modifier for child classes

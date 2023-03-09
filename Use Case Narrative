@@ -1,0 +1,8 @@
+1.	Assign cards
+2.	The player with ace of spades plays first
+3.	The player 2 plays a card.(plays card with the same suit if possible)
+3.1	the player 2 plays card from the same suit.
+3.1.1 The player who plays the largest card this round, plays first next round(table is cleared before next round)
+3.2	the player 2 plays card from different suit.
+3.2.1 the player who plays the largest card(same suit as the first card), takes all the card on the table
+4.	The player who plays out all the cards first wins.
