@@ -1,14 +1,15 @@
 Use Case Narrative:
 1.	Enter player number.
-2.	Generate 52 cards deck.
+2.	Generates a regular 52 cards deck.
 3.	Assign cards to each player as evenly as possible.
-4.	The player with ace of spades plays first.
+4.	The player with ace of spades plays ace of spades first.
 4.1.	Other players play a spade card in clockwise.
 4.2.	Or play a card of different suit if there are no spades in hand.
-5.	After the first round (all player play one card), cards on the table move to the waste pile.
+5.	After the first round (all player play one card), move cards on the table to the waste pile.
 6.	The player who plays the ace of spades plays first in the second round.
 6.1.	Other players play a card follow the same suit if possible.
-6.1.1.	If all players are able to play a card of the same suit, this round end, cards are moved to the waste pile, and the player who plays the highest card of the original suite is the first player next round.
+6.1.1.	If all players are able to play a card of the same suit, this round end, move cards to the waste pile.
+6.1.1.1.	The player who plays the highest card of the original suite is the first player next round.
 6.2.	If a player doesn’t have a card matching the played suit, they may play a card of any suit from their hand, and this round instantly ends.
 6.2.1.	The player with the highest card of the original suite must then pick up the pile and be the first player in the next round.
 7.	If a player has no more cards in hand but his/her card is the highest in the last round in which everyone can follow suit. That player must draw a card at random from the (shuffled) face down waste pile(waste pile class), leading to the next round.
