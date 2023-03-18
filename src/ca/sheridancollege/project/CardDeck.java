@@ -9,14 +9,13 @@ public class CardDeck extends GroupOfCards {
         generateDeck(size);
     }
 
-    public void generateDeck(int size) {
+    private void generateDeck(int size) {
         // TODO - implement CardDeck.generateDeck
-        throw new UnsupportedOperationException();
     }
 
-    public ArrayList<CardHand>[] distributeCards(int playerNumber) {
+    public CardHand[] distributeCards(int numberOfPlayer) {
         // TODO - implement CardDeck.distributeCards
-        throw new UnsupportedOperationException();
-
+        CardHand[] cardHands = new CardHand[numberOfPlayer];
+        return cardHands;
     }
 }
