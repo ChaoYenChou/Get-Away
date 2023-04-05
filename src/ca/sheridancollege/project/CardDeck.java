@@ -1,5 +1,7 @@
 package ca.sheridancollege.project;
 
+import ca.sheridancollege.project.PokerCard.Suit;
+import ca.sheridancollege.project.PokerCard.Value;
 import java.util.ArrayList;
 
 public class CardDeck extends GroupOfCards {
@@ -10,7 +12,13 @@ public class CardDeck extends GroupOfCards {
     }
 
     private void generateDeck(int size) {
+
         // TODO - implement CardDeck.generateDeck
+        for (Suit suit : PokerCard.Suit.values()) {
+            for (Value value : PokerCard.Value.values()) {
+                cards.add(new PokerCard(suit, value));
+            }
+        }
     }
 
     public CardHand[] distributeCards(int numberOfPlayer) {

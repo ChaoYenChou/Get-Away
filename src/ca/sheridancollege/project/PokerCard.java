@@ -5,17 +5,22 @@ public class PokerCard extends Card {
     private Suit suit;
     private Value value;
 
+    public PokerCard(Suit suit, Value value){
+        this.suit = suit;
+        this.value = value;
+    }        
+    
     @Override
     public String toString() {
         return suit.toString() + value.toString();
     }
-
+    
     public enum Suit {
         SPADES, HEARTS, DIAMONDS, CLUBS
     };
 
     public enum Value {
-        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING
+        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
     };
 
     
