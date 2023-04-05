@@ -16,7 +16,7 @@ public class CardDeck extends GroupOfCards {
         // TODO - implement CardDeck.generateDeck
         for (Suit suit : PokerCard.Suit.values()) {
             for (Value value : PokerCard.Value.values()) {
-                cards.add(new PokerCard(suit, value));
+                super.addCards(new PokerCard(suit, value));
             }
         }
     }
