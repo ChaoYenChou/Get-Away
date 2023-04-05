@@ -5,6 +5,10 @@ public class PokerCard extends Card {
     private Suit suit;
     private Value value;
 
+    PokerCard(Suit suit, Value rank) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public String toString() {
         return suit.toString() + value.toString();
