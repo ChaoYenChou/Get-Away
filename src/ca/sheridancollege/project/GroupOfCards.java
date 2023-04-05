@@ -26,6 +26,8 @@ public class GroupOfCards {
     public GroupOfCards(int size) {
         this.size = size;
     }
+    public GroupOfCards() {
+    }
     
     public void addCards(Card card){
         this.cards.add(card);
