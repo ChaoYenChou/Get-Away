@@ -10,12 +10,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        //Scanner scan = new Scanner(System.in);
         
-        GetAway game = new GetAway("GetAway");
-        CardDeck cardDeck = new CardDeck(scan.nextInt()); //include size and generate
+        //GetAway game = new GetAway("GetAway");
+        //CardDeck cardDeck = new CardDeck(scan.nextInt()); //include size and generate
     
-        CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
-        game.play(game.getPlayers(),cardHands);
+        //CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
+        //game.play(game.getPlayers(),cardHands);
+        
+        CardDeck cardDeck = new CardDeck();
     }
 }
