@@ -35,8 +35,12 @@ public class GroupOfCards {
     public ArrayList<Card> getCards() {
         return cards;
     }
-    public void addCard(Card card){
-        this.cards.add(card);
+    public void removeRangeCards(int start, int end) {
+        cards.subList(start, end).clear();
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 
     public void shuffle() {

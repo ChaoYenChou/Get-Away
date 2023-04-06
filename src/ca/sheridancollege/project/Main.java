@@ -18,6 +18,15 @@ public class Main {
         //CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
         //game.play(game.getPlayers(),cardHands);
         
-        CardDeck cardDeck = new CardDeck();
+        CardDeck cardDeck = new CardDeck();    
+        CardHands cardHands = new CardHands();
+        cardHands.setCardHands(cardDeck.distributeCards(3));
+        
+        for(CardHand cardHand :cardHands.getCardHands()){
+            for(Card card:cardHand.getCards()){
+                System.out.println(card.toString());
+            }
+            System.out.println();
+        }
     }
 }
