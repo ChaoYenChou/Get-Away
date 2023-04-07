@@ -21,12 +21,19 @@ public class Main {
         CardDeck cardDeck = new CardDeck();    
         CardHands cardHands = new CardHands();
         cardHands.setCardHands(cardDeck.distributeCards(3));
-        
-        for(CardHand cardHand :cardHands.getCardHands()){
-            for(Card card:cardHand.getCards()){
-                System.out.println(card.toString());
-            }
-            System.out.println();
+        cardHands.sortCardHands();
+        CardHand[] test =cardHands.getCardHands();
+        for(PokerCard pokerCard:test[0].getPokerCards()){
+            System.out.println(pokerCard.toString());
         }
+            
+        
+//        for(CardHand cardHand :cardHands.getCardHands()){
+//            for(PokerCard pokerCard:cardHand.getPokerCards()){
+//                System.out.println(pokerCard.toString());
+//            }
+//            System.out.println();
+//        }
+
     }
 }

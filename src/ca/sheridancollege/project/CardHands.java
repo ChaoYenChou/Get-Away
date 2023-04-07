@@ -16,8 +16,8 @@ public class CardHands {
     }
     public void sortCardHands(){
         CardHand  one = this.cardHands[0];
-        ArrayList<Card> two = new ArrayList();
-        two = one.getCards();
-        //Collections.sort(one.getCards());
+        ArrayList<PokerCard> two = new ArrayList();
+        two = one.getPokerCards();
+        Collections.sort(two);
     }
 }

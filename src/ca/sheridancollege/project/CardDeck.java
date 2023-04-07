@@ -44,12 +44,12 @@ public class CardDeck extends GroupOfPokers {
         int smallHandCount = numberOfPlayer - largeHandCount; //number of players with smaller hand size
 
         for (int i = 0; i < largeHandCount; i++) {
-            ArrayList<PokerCard> cards = new ArrayList(getCards().subList(0, largeHandSize));
+            ArrayList<PokerCard> cards = new ArrayList(getPokerCards().subList(0, largeHandSize));
             cardHands[i].setCards(cards);
             removeRangeCards(0, largeHandSize - i);
         }
         for (int i = 0; i < smallHandCount; i++) {
-            ArrayList<PokerCard> cards = new ArrayList(getCards().subList(0, smallHandSize));
+            ArrayList<PokerCard> cards = new ArrayList(getPokerCards().subList(0, smallHandSize));
             cardHands[i + largeHandCount].setCards(cards);
             removeRangeCards(0, smallHandSize - i);
         }

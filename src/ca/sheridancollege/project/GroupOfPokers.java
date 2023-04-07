@@ -38,5 +38,6 @@ public class GroupOfPokers extends GroupOfCards{
     public void shuffle() {
         Collections.shuffle(pokerCards);
     }
+    
   
 }
