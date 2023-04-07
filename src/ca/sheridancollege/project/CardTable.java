@@ -1,6 +1,6 @@
 package ca.sheridancollege.project;
 
-public class CardTable extends GroupOfCards{
+public class CardTable extends GroupOfPokers{
     public CardTable(){
         super(4);
     }

@@ -3,10 +3,8 @@ package ca.sheridancollege.project;
 import ca.sheridancollege.project.PokerCard.Suit;
 import ca.sheridancollege.project.PokerCard.Value;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-public class CardDeck extends GroupOfCards {
+public class CardDeck extends GroupOfPokers {
 
     public CardDeck() {
         super(52);
@@ -25,7 +23,7 @@ public class CardDeck extends GroupOfCards {
     }
 
     private void generateDeck() {
-        ArrayList cardDeck = new ArrayList();
+        ArrayList<PokerCard> cardDeck = new ArrayList();
         for (Suit suit : PokerCard.Suit.values()) {
             for (Value value : PokerCard.Value.values()) {
                 cardDeck.add(new PokerCard(value, suit));
@@ -46,12 +44,12 @@ public class CardDeck extends GroupOfCards {
         int smallHandCount = numberOfPlayer - largeHandCount; //number of players with smaller hand size
 
         for (int i = 0; i < largeHandCount; i++) {
-            ArrayList<Card> cards = new ArrayList(getCards().subList(0, largeHandSize));
+            ArrayList<PokerCard> cards = new ArrayList(getCards().subList(0, largeHandSize));
             cardHands[i].setCards(cards);
             removeRangeCards(0, largeHandSize - i);
         }
         for (int i = 0; i < smallHandCount; i++) {
-            ArrayList<Card> cards = new ArrayList(getCards().subList(0, smallHandSize));
+            ArrayList<PokerCard> cards = new ArrayList(getCards().subList(0, smallHandSize));
             cardHands[i + largeHandCount].setCards(cards);
             removeRangeCards(0, smallHandSize - i);
         }

@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * A concrete class that represents any grouping of cards for a Game. HINT, you
- * might want to subclass this more than once. The group of cards has a maximum
- * size attribute which is flexible for reuse.
+ * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
+ * once. The group of cards has a maximum size attribute which is flexible for reuse.
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
- * @author Chao Yen Chou Feb 2023
+ * @auther Chao Yen Chou
  */
 public class GroupOfCards {
 
@@ -26,6 +25,9 @@ public class GroupOfCards {
     public GroupOfCards(int size) {
         this.size = size;
     }
+    public GroupOfCards(){
+        
+    }
 
     /**
      * A method that will get the group of cards as an ArrayList
@@ -34,13 +36,6 @@ public class GroupOfCards {
      */
     public ArrayList<Card> getCards() {
         return cards;
-    }
-    public void removeRangeCards(int start, int end) {
-        cards.subList(start, end).clear();
-    }
-
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
     }
 
     public void shuffle() {

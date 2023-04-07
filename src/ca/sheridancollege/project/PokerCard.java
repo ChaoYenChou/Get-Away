@@ -1,6 +1,6 @@
 package ca.sheridancollege.project;
 
-public class PokerCard extends Card {
+public class PokerCard extends Card implements Comparable<PokerCard>{
 
     private Suit suit;
     private Value value;
@@ -13,6 +13,29 @@ public class PokerCard extends Card {
     public PokerCard(Value value, Suit suit) {
         this.value = value;
         this.suit = suit;
+        
+    }
+    
+    @Override
+    public int compareTo(PokerCard pokerCard) {
+        if(this.suit.ordinal() > pokerCard.suit.ordinal()){
+            return 1;
+        }
+        else if(this.suit.ordinal() < pokerCard.suit.ordinal()){
+            return -1;
+        }
+        else if(this.suit.ordinal() == pokerCard.suit.ordinal()){
+            if(this.value.ordinal() > pokerCard.value.ordinal()){
+                return 1;
+            }
+            else if(this.value.ordinal() < pokerCard.value.ordinal()){
+                return -1;
+            }
+            else if(this.value.ordinal() == pokerCard.value.ordinal()){
+                return 0;
+            }
+        } 
+        return 0;
     }
 
     public enum Suit {
