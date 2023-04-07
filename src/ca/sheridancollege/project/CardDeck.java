@@ -4,11 +4,11 @@ import ca.sheridancollege.project.PokerCard.Suit;
 import ca.sheridancollege.project.PokerCard.Value;
 import java.util.ArrayList;
 
-public class CardDeck extends GroupOfPokers {
+public class CardDeck extends GroupOfPokersStatic {
 
     public CardDeck() {
-        super(52);
-        generateDeck();
+        super(52);  
+        generateDeck();  //will generate 52 cards deck by default
         shuffle();
     }
 
@@ -29,7 +29,7 @@ public class CardDeck extends GroupOfPokers {
                 cardDeck.add(new PokerCard(value, suit));
             }
         }
-        setCards(cardDeck);  //set cards in GroupOfCards
+        setCards(cardDeck);  //set cards in GroupOfPokers
     }
 
     public CardHand[] distributeCards(int numberOfPlayer) {

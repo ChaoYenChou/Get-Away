@@ -42,16 +42,10 @@ public class GroupOfCards {
         Collections.shuffle(cards);
     }
 
-    /**
-     * @return the size of the group of cards
-     */
     public int getSize() {
         return size;
     }
 
-    /**
-     * @param size the max size for the group of cards
-     */
     public void setSize(int size) {
         this.size = size;
     }

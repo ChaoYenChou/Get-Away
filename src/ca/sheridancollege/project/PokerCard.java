@@ -17,7 +17,7 @@ public class PokerCard extends Card implements Comparable<PokerCard>{
     }
     
     @Override
-    public int compareTo(PokerCard pokerCard) {
+    public int compareTo(PokerCard pokerCard) {  //combine with Collections.sort
         if(this.suit.ordinal() > pokerCard.suit.ordinal()){
             return 1;
         }
@@ -50,10 +50,6 @@ public class PokerCard extends Card implements Comparable<PokerCard>{
         return this.suit;
     }
 
-    /**
-     *
-     * @param suit
-     */
     public void setSuit(Suit suit) {
         this.suit = suit;
     }
@@ -62,10 +58,6 @@ public class PokerCard extends Card implements Comparable<PokerCard>{
         return this.value;
     }
 
-    /**
-     *
-     * @param value
-     */
     public void setValue(Value value) {
         this.value = value;
     }

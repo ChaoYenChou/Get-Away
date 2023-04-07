@@ -10,30 +10,28 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        //Scanner scan = new Scanner(System.in);
-        
-        //GetAway game = new GetAway("GetAway");
-        //CardDeck cardDeck = new CardDeck(scan.nextInt()); //include size and generate
-    
-        //CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
-        //game.play(game.getPlayers(),cardHands);
-        
-        CardDeck cardDeck = new CardDeck();    
-        CardHands cardHands = new CardHands();
-        cardHands.setCardHands(cardDeck.distributeCards(3));
-        cardHands.sortCardHands();
-        CardHand[] test =cardHands.getCardHands();
-        for(PokerCard pokerCard:test[0].getPokerCards()){
-            System.out.println(pokerCard.toString());
+        // Scanner scan = new Scanner(System.in);
+
+        GetAway game = new GetAway("GetAway");
+        // CardDeck cardDeck = new CardDeck(scan.nextInt()); //include size and generate
+        // CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
+        // game.play(game.getPlayers(),cardHands);
+        CardDeck cardDeck = new CardDeck();
+        CardHands.setCardHands(cardDeck.distributeCards(3));
+        CardHands.sortCardHands();
+       for (CardHand cardHand : CardHands.getCardHands()) {
+            for (PokerCard pokerCard : cardHand.getPokerCards()) {
+                System.out.println(pokerCard.toString());
+            }
+            System.out.println();
         }
-            
+       GetAway.createPlayerList();
+       GetAway.findStartPlayer();
+//        GetAwayPlayer player1 = new GetAwayPlayer("0", 0);
+//        player1.lookCardsInHand();
+//        player1.play();
+
         
-//        for(CardHand cardHand :cardHands.getCardHands()){
-//            for(PokerCard pokerCard:cardHand.getPokerCards()){
-//                System.out.println(pokerCard.toString());
-//            }
-//            System.out.println();
-//        }
 
     }
 }

@@ -1,6 +1,6 @@
 package ca.sheridancollege.project;
 
-public class WastePile extends GroupOfPokers {
+public class WastePile extends GroupOfPokersStatic {
 
     /**
      *

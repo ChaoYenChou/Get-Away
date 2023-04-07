@@ -33,6 +33,10 @@ public class GroupOfPokers extends GroupOfCards{
     public void setCards(ArrayList<PokerCard> pokerCards) {
         this.pokerCards = pokerCards;
     }
+    
+    public void addPokerCard(PokerCard pokerCard){
+        this.pokerCards.add(pokerCard);
+    }
 
     @Override
     public void shuffle() {
