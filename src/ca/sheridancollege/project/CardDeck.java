@@ -4,7 +4,7 @@ import ca.sheridancollege.project.PokerCard.Suit;
 import ca.sheridancollege.project.PokerCard.Value;
 import java.util.ArrayList;
 
-public class CardDeck extends GroupOfPokersStatic {
+public class CardDeck extends GroupOfPokers{
 
     public CardDeck() {
         super(52);  
@@ -29,10 +29,10 @@ public class CardDeck extends GroupOfPokersStatic {
                 cardDeck.add(new PokerCard(value, suit));
             }
         }
-        setCards(cardDeck);  //set cards in GroupOfPokers
+        setCards(cardDeck);  //set cards in GroupOfPokersStatic
     }
 
-    public CardHand[] distributeCards(int numberOfPlayer) {
+    public void distributeCards(int numberOfPlayer) {
         CardHand[] cardHands = new CardHand[numberOfPlayer];
         for(int i = 0; i < numberOfPlayer; i++){
             cardHands[i] = new CardHand(0);
@@ -46,13 +46,14 @@ public class CardDeck extends GroupOfPokersStatic {
         for (int i = 0; i < largeHandCount; i++) {
             ArrayList<PokerCard> cards = new ArrayList(getPokerCards().subList(0, largeHandSize));
             cardHands[i].setCards(cards);
-            removeRangeCards(0, largeHandSize - i);
+            removeRangeCards(0, largeHandSize);
         }
         for (int i = 0; i < smallHandCount; i++) {
             ArrayList<PokerCard> cards = new ArrayList(getPokerCards().subList(0, smallHandSize));
             cardHands[i + largeHandCount].setCards(cards);
-            removeRangeCards(0, smallHandSize - i);
+            removeRangeCards(0, smallHandSize);
         }
-        return cardHands;
+        
+        CardHands.setCardHands(cardHands);
     }
 }

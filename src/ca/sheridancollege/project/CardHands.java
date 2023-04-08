@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardHands {
-    
+
     private static CardHand[] cardHands;
 
     public static CardHand[] getCardHands() {
@@ -16,11 +16,13 @@ public class CardHands {
     }
 
     public static void sortCardHands() {
-        CardHand one = CardHands.cardHands[0];
-        ArrayList<PokerCard> two = one.getPokerCards();     
-        Collections.sort(two);
+        for (CardHand cardHand : cardHands) {
+            ArrayList<PokerCard> pokerCards = cardHand.getPokerCards();
+            Collections.sort(pokerCards);
+        }
     }
-    public static CardHand showCardHand(int playerID){
+
+    public static CardHand showCardHand(int playerID) {
         return CardHands.cardHands[playerID];
     }
 }

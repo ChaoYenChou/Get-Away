@@ -16,17 +16,20 @@ public class Main {
         // CardDeck cardDeck = new CardDeck(scan.nextInt()); //include size and generate
         // CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
         // game.play(game.getPlayers(),cardHands);
-        CardDeck cardDeck = new CardDeck();
-        CardHands.setCardHands(cardDeck.distributeCards(3));
-        CardHands.sortCardHands();
-       for (CardHand cardHand : CardHands.getCardHands()) {
-            for (PokerCard pokerCard : cardHand.getPokerCards()) {
-                System.out.println(pokerCard.toString());
-            }
-            System.out.println();
-        }
-       GetAway.createPlayerList();
-       GetAway.findStartPlayer();
+        System.out.println("How many players do you want to create:");
+        Scanner scan = new Scanner(System.in);
+        int numberOfPlayer = scan.nextInt();
+        game.play(numberOfPlayer);
+        
+        
+//       for (CardHand cardHand : CardHands.getCardHands()) {
+//            for (PokerCard pokerCard : cardHand.getPokerCards()) {
+//                System.out.println(pokerCard.toString());
+//            }
+//            System.out.println();
+//        }
+       
+//       GetAway.findStartPlayer();
 //        GetAwayPlayer player1 = new GetAwayPlayer("0", 0);
 //        player1.lookCardsInHand();
 //        player1.play();

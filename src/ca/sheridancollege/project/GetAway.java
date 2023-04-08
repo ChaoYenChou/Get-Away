@@ -5,32 +5,41 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GetAway extends Game {
-    
+
     private static ArrayList<GetAwayPlayer> getAwayPlayers;// the players of the game
     private static int currentPlayer;  //0 to (numberofplayer -1)
-    private static int highestValuePlayer; //player who plays the highest value card this round
-    private static Value highestValue; //highest value card this round
-    
-    public GetAway(String name){
+    private static int highestValuePlayer = -1; //player who plays the highest value card this round
+    private static Value highestValue = PokerCard.Value.TWO; //highest value card this round
+    private static ArrayList<PokerCard> cardsOnTable;
+    private static CardDeck cardDeck = new CardDeck();
+    private static WastePile wastePile = new WastePile();
+    private static CardTable cardTable = new CardTable();
+
+    public GetAway(String name) {
         super(name);
     }
 
     public void clearTable() {
         // TODO - implement GetAway.clearTable
-        
     }
 
-    
-    public static void play(int i) { //parameter not important fix later
+    public void play(int numberOfPlayer) { //parameter not important fix later    
+        cardDeck.distributeCards(numberOfPlayer); //useScanner
+        CardHands.sortCardHands();
+        createPlayerList(numberOfPlayer); //use Scanner
         findStartPlayer();
-        firstRound();
-        followingRounds();
+        //firstRound();
+        do{
+            followingRounds();
+            CardHands.sortCardHands();
+        } while(true);
         
+       
     }
-    
+
     @Override
     public void play() {
-        
+
     }
 
     @Override
@@ -38,27 +47,22 @@ public class GetAway extends Game {
 
     }
 
-    public static void createPlayerList() {
+    public void createPlayerList(int numberOfPlayer) {
         //scanner enter number here
-        System.out.println("How many players do you want to create:");
-        Scanner scan = new Scanner(System.in);
+
         ArrayList<GetAwayPlayer> players = new ArrayList<>();
-        int numberOfPlayer = scan.nextInt();
-        for(int i = 0; i < numberOfPlayer ; i++){
-            players.add(new GetAwayPlayer(Integer.toString(i),i));
+
+        for (int i = 0; i < numberOfPlayer; i++) {
+            players.add(new GetAwayPlayer(Integer.toString(i), i));
         }
         setGetAwayPlayers(players);
     }
 
-    private static void assignCards() {
-        
-    }
-    
-    public static void findStartPlayer(){
+    public void findStartPlayer() {
         findloop:
-        for(GetAwayPlayer getAwayPlayer : getAwayPlayers){ //play for a round
-            for(PokerCard pokerCard : getAwayPlayer.getPlayerHand()){
-                if(pokerCard.getSuit().toString().equals("SPADES") && pokerCard.getValue().toString().equals("ACE")){
+        for (GetAwayPlayer getAwayPlayer : getAwayPlayers) { //play for a round
+            for (PokerCard pokerCard : getAwayPlayer.getPlayerHand()) {
+                if (pokerCard.getSuit().toString().equals("SPADES") && pokerCard.getValue().toString().equals("ACE")) {
                     currentPlayer = getAwayPlayers.indexOf(getAwayPlayer);
                     break findloop;
                 }
@@ -67,58 +71,80 @@ public class GetAway extends Game {
         System.out.println("The game starts with player: " + currentPlayer);
     }
 
-    private static void firstRound() {
+    private void firstRound() {
         for (GetAwayPlayer getAwayPlayer : getAwayPlayers) {
             //play for a round
-            getAwayPlayers.get(currentPlayer).play(); //add card onto table
+            System.out.println("Current player is: " + currentPlayer);
+            getAwayPlayers.get(currentPlayer).lookCardsInHand();
+            getAwayPlayers.get(currentPlayer).play(cardTable); //add card onto table
             currentPlayer++; //todo: force first play ace of spades
             currentPlayer = currentPlayer % getAwayPlayers.size(); //goes back to p1 if starts at p4
-            
+
         }
-        WastePile.addPokerCard(CardTable.getPokerCards()); //move cards to waste piles
-        CardTable.removeRangeCards();
+        wastePile.addPokerCard(cardTable.getPokerCards()); //move cards to waste piles
+        cardTable.removeRangeCards();
+        System.out.println("Round Ends");
     }
 
-    private static void followingRounds() {
+    private void followingRounds() {
         for (GetAwayPlayer getAwayPlayer : getAwayPlayers) {
             //play for a round
-            getAwayPlayers.get(currentPlayer).play(); //add card onto table
-            if(!isSameSuit()){
-                addCardsFromTable();
-                break;
+            monitorTable();
+            System.out.println("Current player is: " + currentPlayer);
+            getAwayPlayers.get(currentPlayer).lookCardsInHand();
+            getAwayPlayers.get(currentPlayer).play(cardTable); //add card onto table
+            if (!isSameSuit()) { //need to track who plays the highest value
+                playerTakeCards(cardTable);
+                currentPlayer = highestValuePlayer;
+                break; //end the round instantly
+            } else if (isSameSuit()) {
+                if (lastPlayedCard().getValue().ordinal() >= highestValue.ordinal()) {
+                    highestValue = lastPlayedCard().getValue();
+                    highestValuePlayer = getAwayPlayers.get(currentPlayer).getPlayerID();
+                }
+                currentPlayer++; //todo: force first play ace of spades
+                currentPlayer = currentPlayer % getAwayPlayers.size(); //goes back to p1 if starts at p4
             }
-            currentPlayer++; //todo: force first play ace of spades
-            currentPlayer = currentPlayer % getAwayPlayers.size(); //goes back to p1 if starts at p4
-            
         }
-        WastePile.addPokerCard(CardTable.getPokerCards()); //move cards to waste piles
-        CardTable.removeRangeCards();
-        
+        highestValue = PokerCard.Value.TWO; //cleanup after each round
+        highestValuePlayer = -1;
+        wastePile.addPokerCard(cardTable.getPokerCards()); //move cards to waste piles
+        cardTable.removeRangeCards();
+        System.out.println("Round Ends");
     }
-    private static boolean isSameSuit(){
+
+    private boolean isSameSuit() {
         //check if the last two cards are the same suit
-        ArrayList<PokerCard> cardsOnTable =CardTable.getPokerCards();
-        if(cardsOnTable.size()>1){
-            if(cardsOnTable.get(cardsOnTable.size()-1).getSuit() == cardsOnTable.get(cardsOnTable.size()-2).getSuit()){
-                return true;
+        monitorTable();
+        if (cardsOnTable.size() > 1) {
+            if (lastPlayedCard().getSuit() != secondLastPlayedCard().getSuit()) {
+                return false;
             }
-            return false;
         }
-        else if(cardsOnTable.size()<= 1){
-            return false;
-        }
-        return false;
+        return true;
     }
-    
-    private static void addCardsFromTable() {
-        CardTable.getPokerCards();
+
+    private void monitorTable() {
+        cardsOnTable = cardTable.getPokerCards();
     }
-    
-    private static void setGetAwayPlayers(ArrayList<GetAwayPlayer> players) {
-        GetAway.getAwayPlayers = players;
+
+    private PokerCard lastPlayedCard() {
+        return cardsOnTable.get(cardsOnTable.size() - 1);
     }
-    
-    private static ArrayList<GetAwayPlayer> getGetAwayPlayers() {
+
+    private PokerCard secondLastPlayedCard() {
+        return cardsOnTable.get(cardsOnTable.size() - 2);
+    }
+
+    private void playerTakeCards(CardTable cardTable) {
+        getAwayPlayers.get(highestValuePlayer).addCardsFromTable(cardTable);
+    }
+
+    private void setGetAwayPlayers(ArrayList<GetAwayPlayer> players) {
+        getAwayPlayers = players;
+    }
+
+    private ArrayList<GetAwayPlayer> getGetAwayPlayers() {
         return GetAway.getAwayPlayers;
     }
 

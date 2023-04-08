@@ -9,14 +9,13 @@ import java.util.Collections;
  */
 public class GroupOfPokers extends GroupOfCards{
         //The group of cards, stored in an ArrayList
-    private ArrayList<PokerCard> pokerCards;
+    private ArrayList<PokerCard> pokerCards = new ArrayList();
     private int size;//the size of the grouping
 
     public GroupOfPokers(int size) {
         this.size = size;
     }
     
-
     /**
      * A method that will get the group of cards as an ArrayList
      *
@@ -29,6 +28,9 @@ public class GroupOfPokers extends GroupOfCards{
     public void removeRangeCards(int start, int end) {
         pokerCards.subList(start, end).clear();
     }
+    public void removeRangeCards(){
+        pokerCards.clear();
+    }
 
     public void setCards(ArrayList<PokerCard> pokerCards) {
         this.pokerCards = pokerCards;
@@ -37,11 +39,13 @@ public class GroupOfPokers extends GroupOfCards{
     public void addPokerCard(PokerCard pokerCard){
         this.pokerCards.add(pokerCard);
     }
+    public void addPokerCard(ArrayList<PokerCard> pokerCards){
+        this.pokerCards.addAll(pokerCards);
+    }
 
     @Override
     public void shuffle() {
         Collections.shuffle(pokerCards);
     }
     
-  
 }

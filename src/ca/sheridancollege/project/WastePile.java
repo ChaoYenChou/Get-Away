@@ -1,14 +1,9 @@
 package ca.sheridancollege.project;
 
-public class WastePile extends GroupOfPokersStatic {
+public class WastePile extends GroupOfPokers{
 
-    /**
-     *
-     * @param size
-     */
-    public WastePile(int size) {
-        super(size);
+    public WastePile() {
+        super(4);
         // TODO - implement WastePile.WastePile
-        throw new UnsupportedOperationException();
     }
 }
