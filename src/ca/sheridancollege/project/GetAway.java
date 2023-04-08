@@ -29,12 +29,12 @@ public class GetAway extends Game {
         createPlayerList(numberOfPlayer); //use Scanner
         findStartPlayer();
         firstRound();
-        while(!endGame()){ // number of people with cards>1
+        while (!endGame()) { // number of people with cards>1
             followingRounds();
             CardHands.sortCardHands();
-        }  
+        }
         declareLoser();
-       
+
     }
 
     @Override
@@ -46,18 +46,17 @@ public class GetAway extends Game {
     public void declareWinner() {
 
     }
-    
-    private void declareLoser(){
+
+    private void declareLoser() {
         int peopleWithCards = 0;
-        for(CardHand cardHand:CardHands.getCardHands()){          
-            if(cardHand.getPokerCards().size()>0){
+        for (CardHand cardHand : CardHands.getCardHands()) {
+            if (cardHand.getPokerCards().size() > 0) {
                 break;
             }
             peopleWithCards++;
         }
         System.out.println("The Loser is Player: " + peopleWithCards);
     }
-    
 
     public void createPlayerList(int numberOfPlayer) {
         //scanner enter number here
@@ -91,32 +90,38 @@ public class GetAway extends Game {
             getAwayPlayers.get(currentPlayer).play(cardTable); //add card onto table
             currentPlayer++; //todo: force first play ace of spades
             currentPlayer = currentPlayer % getAwayPlayers.size(); //goes back to p1 if starts at p4
-
         }
         wastePile.addPokerCard(cardTable.getPokerCards()); //move cards to waste piles
         cardTable.removeRangeCards();
-        System.out.println("Round Ends");
+        System.out.println("First Round Ends");
         System.out.println();
     }
 
     private void followingRounds() {
         for (GetAwayPlayer getAwayPlayer : getAwayPlayers) {
             //play for a round
-            monitorTable();
-            System.out.println("Current player is: " + currentPlayer);
-            getAwayPlayers.get(currentPlayer).lookCardsInHand();
-            getAwayPlayers.get(currentPlayer).play(cardTable); //add card onto table
-            if (!isSameSuit()) { //need to track who plays the highest value
-                playerTakeCards(cardTable);
-                currentPlayer = highestValuePlayer;
-                break; //end the round instantly
-            } else if (isSameSuit()) {
-                if (lastPlayedCard().getValue().ordinal() >= highestValue.ordinal()) {
-                    highestValue = lastPlayedCard().getValue();
-                    highestValuePlayer = getAwayPlayers.get(currentPlayer).getPlayerID();
-                }
+            if (getAwayPlayers.get(currentPlayer).getPlayerHand().size() == 0) {
                 currentPlayer++; //todo: force first play ace of spades
                 currentPlayer = currentPlayer % getAwayPlayers.size(); //goes back to p1 if starts at p4
+            } 
+            else {
+                System.out.println("Current player is: " + currentPlayer);
+                getAwayPlayers.get(currentPlayer).lookCardsInHand();
+                getAwayPlayers.get(currentPlayer).play(cardTable); //add card onto table
+
+                if (!isSameSuit()) { //need to track who plays the highest value
+                    playerTakeCards(cardTable);
+                    currentPlayer = highestValuePlayer;
+                    break; //end the round instantly
+                } 
+                else if (isSameSuit()) {
+                    if (lastPlayedCard().getValue().ordinal() >= highestValue.ordinal()) {
+                        highestValue = lastPlayedCard().getValue();
+                        highestValuePlayer = getAwayPlayers.get(currentPlayer).getPlayerID();
+                    }
+                    currentPlayer++; //todo: force first play ace of spades
+                    currentPlayer = currentPlayer % getAwayPlayers.size(); //goes back to p1 if starts at p4
+                }
             }
         }
         highestValue = PokerCard.Value.TWO; //cleanup after each round
@@ -137,19 +142,19 @@ public class GetAway extends Game {
         }
         return true;
     }
-    
-    private boolean endGame(){
+
+    private boolean endGame() {
         int peopleWithCards = 0;
-        for(CardHand cardHand:CardHands.getCardHands()){
-            if(cardHand.getPokerCards().size()>0){
+        for (CardHand cardHand : CardHands.getCardHands()) {
+            if (cardHand.getPokerCards().size() > 0) {
                 peopleWithCards++;
             }
         }
-        if(peopleWithCards==1){
+        if (peopleWithCards == 1) {
             return true;
-        }            
+        }
         return false;
-        
+
     }
 
     private void monitorTable() {

@@ -38,7 +38,7 @@ public class PokerCard extends Card implements Comparable<PokerCard> {
 //        SPADES, HEARTS, DIAMONDS, CLUBS
 //    }
     public enum Suit {
-        SPADES, HEARTS
+        SPADES, HEARTS, DIAMONDS
     }
 
 //    public enum Value {

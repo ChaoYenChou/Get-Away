@@ -1,5 +1,6 @@
 package ca.sheridancollege.project;
 
+import ca.sheridancollege.project.PokerCard.Suit;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -19,14 +20,20 @@ public class GetAwayPlayer extends Player {
         Scanner scan = new Scanner(System.in);
 
         Boolean cardExistInHand = false;
-        do {
-            System.out.println();
-            System.out.println("Play a card in hand");
-            String chosenCard = scan.nextLine();
-            StringTokenizer tokenChosen = new StringTokenizer(chosenCard);
-            String chosenSuit = tokenChosen.nextToken();
-            String chosenValue = tokenChosen.nextToken();
-            //todo: add play restrictions
+        do {           
+            String chosenSuit;
+            String chosenValue;
+            do {
+                System.out.println("\nPlay a card in hand: ");
+                String chosenCard = scan.nextLine();
+                StringTokenizer tokenChosen = new StringTokenizer(chosenCard);
+                chosenSuit = tokenChosen.nextToken();
+                chosenValue = tokenChosen.nextToken();
+                if(!playableCard(cardTable, chosenSuit)){
+                    System.out.println("Please select a playable card (same suit)");
+                }
+            } while (!playableCard(cardTable, chosenSuit));  //loop if you have same suit in hand
+
             for (PokerCard pokerCard : playerHand) {
                 if (pokerCard.getSuit().toString().equalsIgnoreCase(chosenSuit)
                         && pokerCard.getValue().toString().equalsIgnoreCase(chosenValue)) {
@@ -42,6 +49,24 @@ public class GetAwayPlayer extends Player {
             }
         } while (!cardExistInHand);
 
+    }
+
+    private boolean playableCard(CardTable cardTable, String chosenSuit) {
+        boolean sameSuitInHand = false;
+        ArrayList<PokerCard> cardsOnTable = cardTable.getPokerCards();
+        if (cardsOnTable.size() > 0) {
+            Suit cardSuit = cardsOnTable.get(0).getSuit();
+            for (PokerCard pokerCard : playerHand) {
+                if (cardSuit == pokerCard.getSuit()) { //same suit exist
+                    sameSuitInHand = true;
+                    break;
+                }
+            }
+            if (sameSuitInHand && !cardSuit.toString().equalsIgnoreCase(chosenSuit)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void lookCardsInHand() {
@@ -69,7 +94,7 @@ public class GetAwayPlayer extends Player {
 
     @Override
     public void play() {
-    
+
     }
 
 }
