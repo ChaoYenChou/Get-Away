@@ -28,12 +28,12 @@ public class GetAway extends Game {
         CardHands.sortCardHands();
         createPlayerList(numberOfPlayer); //use Scanner
         findStartPlayer();
-        //firstRound();
-        do{
+        firstRound();
+        while(!endGame()){ // number of people with cards>1
             followingRounds();
             CardHands.sortCardHands();
-        } while(true);
-        
+        }  
+        declareLoser();
        
     }
 
@@ -46,6 +46,18 @@ public class GetAway extends Game {
     public void declareWinner() {
 
     }
+    
+    private void declareLoser(){
+        int peopleWithCards = 0;
+        for(CardHand cardHand:CardHands.getCardHands()){          
+            if(cardHand.getPokerCards().size()>0){
+                break;
+            }
+            peopleWithCards++;
+        }
+        System.out.println("The Loser is Player: " + peopleWithCards);
+    }
+    
 
     public void createPlayerList(int numberOfPlayer) {
         //scanner enter number here
@@ -84,6 +96,7 @@ public class GetAway extends Game {
         wastePile.addPokerCard(cardTable.getPokerCards()); //move cards to waste piles
         cardTable.removeRangeCards();
         System.out.println("Round Ends");
+        System.out.println();
     }
 
     private void followingRounds() {
@@ -111,6 +124,7 @@ public class GetAway extends Game {
         wastePile.addPokerCard(cardTable.getPokerCards()); //move cards to waste piles
         cardTable.removeRangeCards();
         System.out.println("Round Ends");
+        System.out.println();
     }
 
     private boolean isSameSuit() {
@@ -122,6 +136,20 @@ public class GetAway extends Game {
             }
         }
         return true;
+    }
+    
+    private boolean endGame(){
+        int peopleWithCards = 0;
+        for(CardHand cardHand:CardHands.getCardHands()){
+            if(cardHand.getPokerCards().size()>0){
+                peopleWithCards++;
+            }
+        }
+        if(peopleWithCards==1){
+            return true;
+        }            
+        return false;
+        
     }
 
     private void monitorTable() {

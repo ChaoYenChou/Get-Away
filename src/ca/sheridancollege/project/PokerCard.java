@@ -1,6 +1,6 @@
 package ca.sheridancollege.project;
 
-public class PokerCard extends Card implements Comparable<PokerCard>{
+public class PokerCard extends Card implements Comparable<PokerCard> {
 
     private Suit suit;
     private Value value;
@@ -13,38 +13,40 @@ public class PokerCard extends Card implements Comparable<PokerCard>{
     public PokerCard(Value value, Suit suit) {
         this.value = value;
         this.suit = suit;
-        
+
     }
-    
+
     @Override
     public int compareTo(PokerCard pokerCard) {  //combine with Collections.sort
-        if(this.suit.ordinal() > pokerCard.suit.ordinal()){
+        if (this.suit.ordinal() > pokerCard.suit.ordinal()) {
             return 1;
-        }
-        else if(this.suit.ordinal() < pokerCard.suit.ordinal()){
+        } else if (this.suit.ordinal() < pokerCard.suit.ordinal()) {
             return -1;
-        }
-        else if(this.suit.ordinal() == pokerCard.suit.ordinal()){
-            if(this.value.ordinal() > pokerCard.value.ordinal()){
+        } else if (this.suit.ordinal() == pokerCard.suit.ordinal()) {
+            if (this.value.ordinal() > pokerCard.value.ordinal()) {
                 return 1;
-            }
-            else if(this.value.ordinal() < pokerCard.value.ordinal()){
+            } else if (this.value.ordinal() < pokerCard.value.ordinal()) {
                 return -1;
-            }
-            else if(this.value.ordinal() == pokerCard.value.ordinal()){
+            } else if (this.value.ordinal() == pokerCard.value.ordinal()) {
                 return 0;
             }
-        } 
+        }
         return 0;
     }
 
+//    public enum Suit {
+//        SPADES, HEARTS, DIAMONDS, CLUBS
+//    }
     public enum Suit {
-        SPADES, HEARTS, DIAMONDS, CLUBS
-    };
+        SPADES, HEARTS
+    }
 
+//    public enum Value {
+//        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
+//    }
     public enum Value {
-        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
-    };
+        TWO, THREE, FOUR, ACE
+    }
 
     public Suit getSuit() {
         return this.suit;

@@ -38,9 +38,9 @@ public class CardDeck extends GroupOfPokers{
             cardHands[i] = new CardHand(0);
         }
 
-        int smallHandSize = 52 / numberOfPlayer; //52 can change to deck size
+        int smallHandSize = getPokerCards().size() / numberOfPlayer; //52 can change to deck size
         int largeHandSize = smallHandSize + 1;
-        int largeHandCount = 52 - smallHandSize * numberOfPlayer; //number of players with larger hand size
+        int largeHandCount = getPokerCards().size() - smallHandSize * numberOfPlayer; //number of players with larger hand size
         int smallHandCount = numberOfPlayer - largeHandCount; //number of players with smaller hand size
 
         for (int i = 0; i < largeHandCount; i++) {
