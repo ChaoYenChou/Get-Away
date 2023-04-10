@@ -12,6 +12,7 @@ package ca.sheridancollege.project;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Chao Yen Chou Feb 2023
+ * @author Jivesh Malhotra 
  */
 public abstract class Player {
 

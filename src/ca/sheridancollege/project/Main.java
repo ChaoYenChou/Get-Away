@@ -5,21 +5,39 @@ import java.util.Scanner;
 
 /**
  *
- * @author Chou
+ * @author Jivesh
  */
 public class Main {
 
     public static void main(String[] args) {
-        // Scanner scan = new Scanner(System.in);
-
-        GetAway game = new GetAway("GetAway");
-        // CardDeck cardDeck = new CardDeck(scan.nextInt()); //include size and generate
-        // CardHand[] cardHands = cardDeck.distributeCards(scan.nextInt());
-        // game.play(game.getPlayers(),cardHands);
+    Scanner scan = new Scanner(System.in);
+    GetAway game = new GetAway("GetAway");
+    
+    String input;
+    boolean validInput = false;
+    do {
         System.out.println("How many players do you want to create:");
-        Scanner scan = new Scanner(System.in);
-        int numberOfPlayer = scan.nextInt();
-        game.play(numberOfPlayer);
+        input = scan.nextLine();
+        if (isInteger(input)) {
+            validInput = true;
+        } else {
+            System.out.println("Invalid input. Please enter an integer.");
+        }
+    } while (!validInput);
+    
+    int numberOfPlayers = Integer.parseInt(input);
+    game.play(numberOfPlayers);
+}
+
+public static boolean isInteger(String input) {
+    try {
+        Integer.parseInt(input);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
+}
         
         
 //       for (CardHand cardHand : CardHands.getCardHands()) {
@@ -36,5 +54,3 @@ public class Main {
 
         
 
-    }
-}

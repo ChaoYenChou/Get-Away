@@ -47,6 +47,23 @@ public class PokerCard extends Card implements Comparable<PokerCard> {
     public enum Value {
         TWO, THREE, FOUR, ACE
     }
+    public static boolean isValidSuit(String input) {
+        for (Suit suit : Suit.values()) {
+            if (suit.name().equalsIgnoreCase(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isValidValue(String input) {
+        for (Value value : Value.values()) {
+            if (value.name().equalsIgnoreCase(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Suit getSuit() {
         return this.suit;
